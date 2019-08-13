@@ -1,41 +1,17 @@
-import React, { Component } from 'react';
-import Search from './Components/Search.js';
-import VideoList from './Components/VideoList.js';
-import SearchYoutube from './Services/YoutubeSearch';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Video from "./Routes/Video";
+import Home from "./Routes/Home";
 
 class App extends Component {
-  state = {
-    videoList: [],
-    keywords: '',
-  }
-
-  onSearchChange = (e) => {
-    this.setState({ keywords: e.target.value });
-  }
-
-  onSubmitSearch = async () => {
-    const { keywords } = this.state;
-    try {
-      const response = await SearchYoutube(keywords);
-      this.setState({ videoList: response.data.items });
-    } catch (e) {
-      throw (e);
-    }
-  }
-
-  render () {
-    const { keywords, videoList } = this.state;
+  render() {
     return (
       <div className="App">
-        <Search
-          onSearchChange={this.onSearchChange}
-          keywords={keywords}
-          onSubmitSearch={this.onSubmitSearch}
-        />
-        <VideoList
-          videoList={videoList}
-        />
-    </div>
+        <Router>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/video/:videoId" component={Video} />
+        </Router>
+      </div>
     );
   }
 }
