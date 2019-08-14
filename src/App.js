@@ -1,41 +1,26 @@
-import React, { Component } from 'react';
-import Search from './Components/Search.js';
-import VideoList from './Components/VideoList.js';
-import SearchYoutube from './Services/YoutubeSearch';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
-  state = {
-    videoList: [],
-    keywords: '',
-  }
+  onSearchChange = e => {};
 
-  onSearchChange = (e) => {
-    this.setState({ keywords: e.target.value });
-  }
-
-  onSubmitSearch = async () => {
-    const { keywords } = this.state;
-    try {
-      const response = await SearchYoutube(keywords);
-      this.setState({ videoList: response.data.items });
-    } catch (e) {
-      throw (e);
-    }
-  }
-
-  render () {
-    const { keywords, videoList } = this.state;
+  onSubmitSearch = () => {};
+  render() {
     return (
       <div className="App">
-        <Search
-          onSearchChange={this.onSearchChange}
-          keywords={keywords}
-          onSubmitSearch={this.onSubmitSearch}
-        />
-        <VideoList
-          videoList={videoList}
-        />
-    </div>
+        <h1>Use Youtube API to Search Videos</h1>
+        <div className="search-container">
+          <input
+            onChange={this.onSearchChange}
+            value={this.keywords}
+            placeholder="Find videos"
+            className="search-input"
+          />
+          <button onClick={this.onSubmitSearch} className="search-button">
+            Search
+          </button>
+        </div>
+      </div>
     );
   }
 }
