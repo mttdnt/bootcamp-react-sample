@@ -1,17 +1,25 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Video from "./Routes/Video";
-import Home from "./Routes/Home";
 import "./App.css";
+
 class App extends Component {
+  onSearchChange = e => {};
+
+  onSubmitSearch = () => {};
   render() {
     return (
       <div className="App">
         <h1>Use Youtube API to Search Videos</h1>
-        <Router>
-          <Route exact path="/(|home)/" component={Home} />
-          <Route exact path="/video/:videoId" component={Video} />
-        </Router>
+        <div className="search-container">
+          <input
+            onChange={this.onSearchChange}
+            value={this.keywords}
+            placeholder="Find videos"
+            className="search-input"
+          />
+          <button onClick={this.onSubmitSearch} className="search-button">
+            Search
+          </button>
+        </div>
       </div>
     );
   }
