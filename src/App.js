@@ -12,8 +12,8 @@ class App extends Component {
         <h1>Use Youtube API to Search Videos</h1>
         <Clock />
         <Router>
-          <Route exact path="/(|home)/" component={Home} />
-          <Route exact path="/video/:videoId" component={Video} />
+          <Route path="/home" component={Home} />
+          <Route path="/video/:videoId" component={Video} />
         </Router>
       </div>
     );
