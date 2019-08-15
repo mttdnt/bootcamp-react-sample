@@ -5,14 +5,18 @@ import Home from "./Routes/Home";
 import Clock from "./Components/Clock";
 
 import "./App.css";
+
 class App extends Component {
+  onSearchChange = e => {};
+
+  onSubmitSearch = () => {};
   render() {
     return (
       <div className="App">
         <h1>Use Youtube API to Search Videos</h1>
         <Clock />
         <Router>
-          <Route path="/home" component={Home} />
+          <Route path="/" component={Home} />
           <Route path="/video/:videoId" component={Video} />
         </Router>
       </div>
